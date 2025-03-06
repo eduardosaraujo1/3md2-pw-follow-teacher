@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>JQuery</title>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+
+    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+  </head>
+
+  <body>
+    <div id="subject" class="absolute top-0 left-0 w-16 h-16 bg-red-500">
+      This is great!
+    </div>
+
+    <button class="px-3 py-2 mt-24 rounded cursor-pointer bg-neutral-300">
+      Click Me
+    </button>
+
+    <script>
+      $(() => {
+        $("button").click(() => {
+          $("#subject").animate({
+            top: "250px",
+            left: "250px",
+            width: "2rem",
+            height: "2rem",
+          });
+        });
+      });
+    </script>
+  </body>
+</html>
