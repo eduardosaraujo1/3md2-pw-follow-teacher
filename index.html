@@ -1,15 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Walking Game</title>
-    <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>Walking Game</title>
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
 
-    <script type="module" src="main.js"></script>
-  </head>
+        <script type="module" src="main.js"></script>
+    </head>
 
-  <body>
-    <div class="w-16 h-16 bg-neutral-200 text-center">P</div>
-  </body>
+    <body class="flex flex-col items-center h-screen gap-2">
+        <div class="grid grid-cols-[repeat(3,4rem)] *:h-16 *:w-16 mt-2">
+            <div class="bg-white"></div>
+            <button
+                data-key="w"
+                class="text-white bg-black cursor-pointer hover:bg-neutral-700"
+            >
+                W
+            </button>
+            <div class="bg-white"></div>
+            <button
+                data-key="a"
+                class="text-white bg-black cursor-pointer hover:bg-neutral-700"
+            >
+                A
+            </button>
+            <button
+                data-key="s"
+                class="text-white bg-black cursor-pointer hover:bg-neutral-700"
+            >
+                S
+            </button>
+            <button
+                data-key="d"
+                class="text-white bg-black cursor-pointer hover:bg-neutral-700"
+            >
+                D
+            </button>
+        </div>
+        <div class="relative flex-1 w-full">
+            <div
+                id="player"
+                class="absolute z-10 flex items-center justify-center w-16 h-16 text-lg font-bold text-white shadow bg-neutral-800"
+            >
+                P
+            </div>
+        </div>
+    </body>
 </html>
