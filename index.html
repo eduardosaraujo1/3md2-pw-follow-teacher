@@ -15,9 +15,9 @@
         <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     </head>
 
-    <body class="grid grid-rows-[100px_auto] h-screen">
+    <body class="grid grid-rows-[6rem_auto] h-screen">
         <div class="flex gap-4 px-2 bg-neutral-200 *:mt-4">
-            <div class="">
+            <div>
                 <span class="text-lg font-bold">Tamanho</span>
                 <div class="flex items-center gap-1">
                     <button
@@ -28,9 +28,33 @@
                         <i class="fa-solid fa-plus"></i>
                         <span class="sr-only">SizePlus</span>
                     </button>
-                    <span id="player_size" class="w-10 text-center">5</span>
+                    <span id="player_size" class="text-center min-w-10">4</span>
                     <button
                         id="player_size_minus"
+                        type="button"
+                        class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center cursor-pointer"
+                    >
+                        <i class="fa-solid fa-minus"></i>
+                        <span class="sr-only">SizeMinus</span>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <span class="text-lg font-bold">Velocidade</span>
+                <div class="flex items-center gap-1">
+                    <button
+                        id="player_speed_plus"
+                        type="button"
+                        class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center cursor-pointer"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        <span class="sr-only">Speed Plus</span>
+                    </button>
+                    <span id="player_speed" class="text-center min-w-10"
+                        >0</span
+                    >
+                    <button
+                        id="player_speed_minus"
                         type="button"
                         class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center cursor-pointer"
                     >
@@ -56,7 +80,8 @@
             <div
                 id="player_model"
                 class="absolute bg-blue-500"
-                data-size="16"
+                data-size="4"
+                data-speed="8"
                 data-x="0"
                 data-y="0"
             ></div>
