@@ -1,9 +1,12 @@
 export function render() {
-    let playerSize = $("#player_model").data("size") ?? 4;
+    $("[data-size]").each((_, e) => {
+        let _size;
+        _size = $(e).data("size") * 0.25;
+        _size += "rem";
 
-    // Frontend rendering
-    $("#player_size").html(playerSize * 0.25);
+        $(e).css({ width: _size, height: _size });
+    });
 
-    const _size = playerSize * 0.25 + "rem";
-    $("[data-size]").css({ width: _size, height: _size });
+    const playerSize = ($("#player_model").data("size") ?? 4) * 0.25;
+    $("#player_size").html(playerSize);
 }

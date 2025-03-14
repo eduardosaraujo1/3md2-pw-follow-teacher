@@ -8,17 +8,24 @@ $(() => {
 
     // Button handling
     $("#player_size_plus").on("click", () => {
-        playerSize++;
+        playerSize = Math.min(playerSize + 1, 64);
 
-        $("[data-size]").data("size", playerSize);
+        $("#player_model").data("size", playerSize);
         render();
     });
     $("#player_size_minus").on("click", () => {
-        playerSize--;
+        playerSize = Math.max(playerSize - 1, 2);
 
-        $("[data-size]").data("size", playerSize);
+        $("#player_model").data("size", playerSize);
         render();
     });
+    $("#board_reset").on("click", () => {
+        playerSize = 16;
+
+        $("#player_model").data("size", playerSize);
+        render();
+    });
+    // TODO: create a custom setState function for state management (playerSize aquirement should be on render, not here)
 
     render();
 });
