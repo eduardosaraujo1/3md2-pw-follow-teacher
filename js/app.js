@@ -1,31 +1,41 @@
 import "../lib/jquery.js";
-import { render } from "./functions.js";
+import { render, player } from "./functions.js";
 
 console.log("App started");
 
 $(() => {
-    let playerSize = $("#player_model").data("size") ?? 4;
-
     // Button handling
     $("#player_size_plus").on("click", () => {
-        playerSize = Math.min(playerSize + 1, 64);
+        player.setSize((size) => Math.min(size + 1, 64));
 
-        $("#player_model").data("size", playerSize);
         render();
     });
     $("#player_size_minus").on("click", () => {
-        playerSize = Math.max(playerSize - 1, 2);
+        player.setSize((size) => Math.max(size - 1, 4));
 
-        $("#player_model").data("size", playerSize);
         render();
     });
     $("#board_reset").on("click", () => {
-        playerSize = 16;
+        player.setSize(() => 16);
+        player.moveX(0);
+        player.moveY(0);
 
-        $("#player_model").data("size", playerSize);
         render();
     });
-    // TODO: create a custom setState function for state management (playerSize aquirement should be on render, not here)
+
+    $(window).on("keydown", (event) => {
+        if (event.key === "ArrowRight" || event.key === "d") {
+            player.moveX(1);
+        } else if (event.key === "ArrowLeft" || event.key === "a") {
+            player.moveX(-1);
+        } else if (event.key === "ArrowUp" || event.key === "w") {
+            player.moveY(-1);
+        } else if (event.key === "ArrowDown" || event.key === "s") {
+            player.moveY(1);
+        }
+
+        render();
+    });
 
     render();
 });
