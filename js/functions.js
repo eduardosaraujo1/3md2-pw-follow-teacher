@@ -38,8 +38,6 @@ export function render() {
     // player speed display
     const playerSpeed = player.speed();
     $("#player_speed").html(playerSpeed);
-
-    console.log("Re-render");
 }
 
 function clampPositionX(pos = 0) {
