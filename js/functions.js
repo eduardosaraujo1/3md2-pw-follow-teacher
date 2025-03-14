@@ -1,3 +1,5 @@
+import "../lib/jquery.js";
+
 const REM_IN_PX = parseFloat(
     getComputedStyle(document.documentElement).fontSize
 );
