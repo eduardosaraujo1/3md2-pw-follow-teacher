@@ -4,47 +4,57 @@
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Walking Game</title>
-        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
+        <link
+            rel="stylesheet"
+            href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
+            integrity="sha512-Evv84Mr4kqVGRNSgIGL/F/aIDqQb7xQ2vcrdIwxfjThSH8CSR7PBEakCr51Ck+w+/U6swU2Im1vVX0SVk9ABhg=="
+            crossorigin="anonymous"
+            referrerpolicy="no-referrer"
+        />
 
-        <script type="module" src="main.js"></script>
+        <script src="https://unpkg.com/@tailwindcss/browser@4"></script>
     </head>
 
-    <body class="flex flex-col items-center h-screen gap-2">
-        <div class="grid grid-cols-[repeat(3,4rem)] *:h-16 *:w-16 mt-2">
-            <div class="bg-white"></div>
-            <button
-                data-key="w"
-                class="text-white bg-black cursor-pointer hover:bg-neutral-700"
-            >
-                W
-            </button>
-            <div class="bg-white"></div>
-            <button
-                data-key="a"
-                class="text-white bg-black cursor-pointer hover:bg-neutral-700"
-            >
-                A
-            </button>
-            <button
-                data-key="s"
-                class="text-white bg-black cursor-pointer hover:bg-neutral-700"
-            >
-                S
-            </button>
-            <button
-                data-key="d"
-                class="text-white bg-black cursor-pointer hover:bg-neutral-700"
-            >
-                D
-            </button>
-        </div>
-        <div class="relative flex-1 w-full">
-            <div
-                id="player"
-                class="absolute z-10 flex items-center justify-center w-16 h-16 text-lg font-bold text-white shadow bg-neutral-800"
-            >
-                P
+    <body class="grid grid-rows-[100px_auto] h-screen">
+        <div class="flex gap-4 px-2 bg-neutral-200 *:mt-4">
+            <div class="">
+                <span class="text-lg font-bold">Tamanho</span>
+                <div class="flex items-center gap-1">
+                    <button
+                        id="player_size_plus"
+                        type="button"
+                        class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center cursor-pointer"
+                    >
+                        <i class="fa-solid fa-plus"></i>
+                        <span class="sr-only">SizePlus</span>
+                    </button>
+                    <span id="player_size" class="w-10 text-center">5</span>
+                    <button
+                        id="player_size_minus"
+                        type="button"
+                        class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm p-2.5 text-center inline-flex items-center cursor-pointer"
+                    >
+                        <i class="fa-solid fa-minus"></i>
+                        <span class="sr-only">SizeMinus</span>
+                    </button>
+                </div>
+            </div>
+            <div>
+                <span class="text-lg font-bold">Regenerar Campo</span>
+                <div>
+                    <button
+                        type="button"
+                        class="cursor-pointer text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2"
+                    >
+                        Reiniciar
+                    </button>
+                </div>
             </div>
         </div>
+        <div class="bg-neutral-50">
+            <div id="player_model" class="bg-blue-500" data-size="16"></div>
+        </div>
+
+        <script type="module" src="js/app.js"></script>
     </body>
 </html>
