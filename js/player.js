@@ -25,6 +25,9 @@ export default class Player {
 
     _loadMovementListeners() {
         $(window).on("keydown", (event) => {
+            if (this.model().get()[0].dataset.removed) {
+                return;
+            }
             if (event.key === "ArrowRight" || event.key === "d") {
                 this.addX(1);
             } else if (event.key === "ArrowLeft" || event.key === "a") {
@@ -37,6 +40,34 @@ export default class Player {
 
             this.game.refresh();
         });
+    }
+
+    remove() {
+        console.log("Player Removed");
+        this.model().get()[0].dataset.removed = "true";
+    }
+
+    getCollidingBlock() {
+        const playerX = this.x();
+        const playerY = this.y();
+        const playerSize = this.size() * REM_IN_PX;
+
+        for (const block of this.game.blockManager.blocks) {
+            const x = block.data("x") ?? 0;
+            const y = block.data("y") ?? 0;
+            const size = (block.data("size") ?? 0) * REM_IN_PX;
+
+            if (
+                playerX < x + size &&
+                playerX + playerSize > x &&
+                playerY < y + size &&
+                playerY + playerSize > y
+            ) {
+                return block;
+            }
+        }
+
+        return null;
     }
 
     model() {

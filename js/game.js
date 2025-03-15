@@ -20,6 +20,16 @@ export default class Game {
     }
 
     refresh() {
+        // check if the player is colliding with another block
+        const collidingBlock = this.player.getCollidingBlock();
+        if (collidingBlock) {
+            if (this.player.size() < collidingBlock.data("size") ?? 0) {
+                this.player.remove();
+            } else {
+                this.blockManager.remove(collidingBlock);
+            }
+        }
+
         // apply styles to all elements with specific data
         $("[data-size]").each((_, e) => {
             let _size;
@@ -45,6 +55,12 @@ export default class Game {
             $(e).css({ top: _pos });
         });
 
+        this.player.model().css("display", "block");
+
+        $("[data-removed]").each((_, e) => {
+            $(e).css({ display: "none" });
+        });
+
         // update display
         $("#player_size").html(this.player.size());
         $("#player_speed").html(this.player.speed());
@@ -57,6 +73,7 @@ export default class Game {
         player.setSpeed(this.defaultSpeed);
         player.setX(0);
         player.setY(0);
+        player.model().get()[0].removeAttribute("data-removed");
 
         this.blockManager.clear();
 

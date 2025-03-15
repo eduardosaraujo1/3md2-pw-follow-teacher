@@ -28,6 +28,14 @@ export default class BlockManager {
 
     /** @param {JQuery<HTMLElement>} element */
     remove(element) {
+        let arr = [];
+        for (const e of this.blocks) {
+            if (!e.is(element)) {
+                arr.push(e);
+            }
+        }
+        this.blocks = arr;
+
         element.remove();
     }
 
