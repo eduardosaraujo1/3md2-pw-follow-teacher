@@ -1,55 +1,37 @@
 import "../lib/jquery.js";
-import { render, player } from "./functions.js";
-
-console.log("App started");
+import Game from "./game.js";
 
 $(() => {
-    // Player size
-    $("#player_size_plus").on("click", () => {
-        player.addSize(0.5);
+    const game = new Game({ defaultSize: 4, defaultSpeed: 16 });
 
-        render();
-    });
-    $("#player_size_minus").on("click", () => {
-        player.addSize(-0.5);
-
-        render();
-    });
     $("#board_reset").on("click", () => {
-        player.setSize(4);
-        player.setX(0);
-        player.setY(0);
-        player.setSpeed(8);
-
-        render();
+        game.reset();
     });
 
-    // Player Speed
-    $("#player_speed_plus").on("click", () => {
-        player.addSpeed(1);
+    // player size
+    $("#player_size_plus").on("click", () => {
+        game.player.addSize(0.5);
 
-        render();
+        game.refresh();
+    });
+
+    $("#player_size_minus").on("click", () => {
+        game.player.addSize(-0.5);
+
+        game.refresh();
+    });
+
+    // player speed
+    $("#player_speed_plus").on("click", () => {
+        game.player.addSpeed(1);
+
+        game.refresh();
     });
     $("#player_speed_minus").on("click", () => {
         player.addSpeed(-1);
 
-        render();
+        game.refresh();
     });
 
-    // Movement
-    $(window).on("keydown", (event) => {
-        if (event.key === "ArrowRight" || event.key === "d") {
-            player.addX(1);
-        } else if (event.key === "ArrowLeft" || event.key === "a") {
-            player.addX(-1);
-        } else if (event.key === "ArrowUp" || event.key === "w") {
-            player.addY(-1);
-        } else if (event.key === "ArrowDown" || event.key === "s") {
-            player.addY(1);
-        }
-
-        render();
-    });
-
-    render();
+    console.log("App started");
 });
