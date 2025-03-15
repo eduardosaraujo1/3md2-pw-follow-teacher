@@ -1,5 +1,6 @@
 import "../lib/jquery.js";
 import Player from "./player.js";
+import BlockManager from "./block-manager.js";
 
 export default class Game {
     constructor({ defaultSize, defaultSpeed }) {
@@ -13,8 +14,9 @@ export default class Game {
             size: defaultSize,
             speed: defaultSpeed,
         });
+        this.blockManager = new BlockManager(this);
 
-        this.refresh();
+        this.reset();
     }
 
     refresh() {
@@ -56,8 +58,13 @@ export default class Game {
         player.setX(0);
         player.setY(0);
 
+        this.blockManager.clear();
+
+        this.blockManager.spawnRandomBlock();
+        this.blockManager.spawnRandomBlock();
+        this.blockManager.spawnRandomBlock();
+        this.blockManager.spawnRandomBlock();
+
         this.refresh();
     }
-
-    spawnBlock() {}
 }

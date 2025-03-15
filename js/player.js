@@ -1,9 +1,6 @@
 import "../lib/jquery.js";
+import { REM_IN_PX } from "./functions.js";
 import Game from "./game.js";
-
-const REM_IN_PX = parseFloat(
-    getComputedStyle(document.documentElement).fontSize
-);
 
 export default class Player {
     /**
@@ -76,26 +73,12 @@ export default class Player {
 
     /** @param {number} x */
     setX(x) {
-        const clampX = (pos) => {
-            const minX = 0;
-            const maxX = $("#game").width() - this.size() * REM_IN_PX;
-
-            return Math.min(Math.max(pos, minX), maxX);
-        };
-
-        this.model().data("x", clampX(x));
+        this.model().data("x", this.clampX(x));
     }
 
     /** @param {number} y */
     setY(y) {
-        const clampY = (pos) => {
-            const minY = 0;
-            const maxY = $("#game").height() - this.size() * REM_IN_PX;
-
-            return Math.min(Math.max(pos, minY), maxY);
-        };
-
-        this.model().data("y", clampY(y));
+        this.model().data("y", this.clampY(y));
     }
 
     /** @param {number} speed */
@@ -134,4 +117,18 @@ export default class Player {
         this.setSpeed(speed);
     }
     // END ADDERS
+
+    clampX(pos) {
+        const minX = 0;
+        const maxX = $("#game").width() - this.size() * REM_IN_PX;
+
+        return Math.min(Math.max(pos, minX), maxX);
+    }
+
+    clampY(pos) {
+        const minY = 0;
+        const maxY = $("#game").height() - this.size() * REM_IN_PX;
+
+        return Math.min(Math.max(pos, minY), maxY);
+    }
 }

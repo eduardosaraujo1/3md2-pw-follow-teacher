@@ -28,7 +28,7 @@ $(() => {
         game.refresh();
     });
     $("#player_speed_minus").on("click", () => {
-        player.addSpeed(-1);
+        game.player.addSpeed(-1);
 
         game.refresh();
     });
